@@ -32,6 +32,7 @@ class _GameState extends State<Game> with SingleTickerProviderStateMixin {
     return Scaffold(
       body: Center(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             Sizing.verticalSpacer(16),
             SizedBox(

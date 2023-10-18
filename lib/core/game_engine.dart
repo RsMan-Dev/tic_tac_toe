@@ -132,15 +132,19 @@ class GameEngine extends ValueNotifier<GameData> {
     });
   }
 
-  Widget render(BuildContext context) => Column(
-        children: [
-          Text("Tour du ${value.turn.name}",
-              style: Theme.of(context).textTheme.displayMedium),
-          Sizing.verticalSpacer(16),
-          ValueListenableBuilder(
-            valueListenable: this,
-            builder: (context, value, child) {
-              return AnimatedBuilder(
+  Widget render(BuildContext context) => ValueListenableBuilder(
+        valueListenable: this,
+        builder: (context, value, child) {
+          return Column(
+            children: [
+              if (value.isFinished)
+                Text("Partie terminée",
+                    style: Theme.of(context).textTheme.displayMedium),
+              if (!value.isFinished)
+                Text("Tour du ${value.turn.name}",
+                    style: Theme.of(context).textTheme.displayMedium),
+              Sizing.verticalSpacer(16),
+              AnimatedBuilder(
                 animation: value.boardTransformationController,
                 builder: (context, child) {
                   return Transform(
@@ -168,7 +172,9 @@ class GameEngine extends ValueNotifier<GameData> {
                         color: ThemeBuilder.surface,
                         padding: Sizing.edgeInsets(all: 16),
                         child: GridView.builder(
+                          padding: EdgeInsets.zero,
                           itemCount: value.grid.length,
+                          physics: const NeverScrollableScrollPhysics(),
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: value.size,
@@ -176,17 +182,15 @@ class GameEngine extends ValueNotifier<GameData> {
                             mainAxisSpacing: Sizing.width(12),
                           ),
                           itemBuilder: (context, index) {
-                            return InkWell(
+                            return RoundedBox(
                               onTap: () {
                                 context.playSound(SoundEffects.impact);
                                 play(index);
                               },
-                              child: RoundedBox(
-                                color: ThemeBuilder.background,
-                                radius: Sizing.borderRadius(all: 16),
-                                child: Center(
-                                  child: value.grid[index]?.icon,
-                                ),
+                              color: ThemeBuilder.background,
+                              radius: Sizing.borderRadius(all: 16),
+                              child: Center(
+                                child: value.grid[index]?.icon,
                               ),
                             );
                           },
@@ -210,9 +214,9 @@ class GameEngine extends ValueNotifier<GameData> {
                       ),
                   ],
                 ),
-              );
-            },
-          ),
-        ],
+              ),
+            ],
+          );
+        },
       );
 }

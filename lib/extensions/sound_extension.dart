@@ -2,10 +2,9 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 enum SoundEffects {
-  error("error.mp3",
-      startAt: Duration(milliseconds: 620), speed: 1.5, volume: 0.8),
+  error("error.mp3", startAt: Duration(milliseconds: 620), volume: 0.8),
   impact("impact.mp3"),
-  start("start.mp3", startAt: Duration(milliseconds: 100), speed: 1.5),
+  start("start.mp3", startAt: Duration(milliseconds: 100)),
   ;
 
   final String _path;
