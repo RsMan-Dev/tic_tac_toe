@@ -1,16 +1,23 @@
-# tic_tac_toe
+# A small fun Tic Tac Toe game in flutter
 
-A new Flutter project.
+Origin of the project: A contact on Linkedin purposed me to do a Tic Tac Toe game in flutter.
+Even if it was not a required to do it, I decided to do it for fun and to learn more about flutter.
+So, i learnt how to manipulate matrix4, to make some animations on actions, and i got some sound effects from the web.
 
-## Getting Started
+This project was not a production project, so the interface is not perfect, but it works well.
 
-This project is a starting point for a Flutter application.
+App is totally made in french, no internationalization was made.
 
-A few resources to get you started if this is your first Flutter project:
+## Run the project
+Requirements: 
+    - Flutter SDK
+    - Compatible device to run the app on (Android, iOS, Browser, Windows, MacOS, Linux)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Clone the project, and run `flutter run` in the project folder, that's all.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Play the game
+The home page will show you play buttons, they have a chance to start the game, respectively 100%, 75%, 50%, 25% 0% chance.
+
+The game page will be a simple tic tac toe, 2 buttons on the top will bring you at the home, or reset the game.
+
+The playing player is indicated on top of the game grid.
