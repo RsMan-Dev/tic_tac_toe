@@ -98,32 +98,32 @@ class ThemeBuilder {
               fontSize: Sizing.getWidthScaled(26),
               fontFamily: "Kensmark",
               fontWeight: FontWeight.w700,
-              color: _DefaultColors.secondary),
+              color: _DefaultColors.primary),
           displayMedium: TextStyle(
               fontSize: Sizing.getWidthScaled(23),
               fontFamily: "Kensmark",
               fontWeight: FontWeight.w700,
-              color: _DefaultColors.secondary),
+              color: _DefaultColors.primary),
           displaySmall: TextStyle(
               fontSize: Sizing.getWidthScaled(20),
               fontFamily: "Kensmark",
               fontWeight: FontWeight.w700,
-              color: _DefaultColors.secondary),
+              color: _DefaultColors.primary),
           headlineMedium: TextStyle(
               fontSize: Sizing.getWidthScaled(18),
               fontFamily: "Avenir",
               fontWeight: FontWeight.w700,
-              color: _DefaultColors.secondary),
+              color: _DefaultColors.primary),
           headlineSmall: TextStyle(
               fontSize: Sizing.getWidthScaled(17),
               fontFamily: "Avenir",
               fontWeight: FontWeight.w700,
-              color: _DefaultColors.secondary),
+              color: _DefaultColors.primary),
           titleLarge: TextStyle(
               fontSize: Sizing.getWidthScaled(16),
               fontFamily: "Avenir",
               fontWeight: FontWeight.w700,
-              color: _DefaultColors.secondary),
+              color: _DefaultColors.primary),
           bodyLarge: TextStyle(
               fontSize: Sizing.getWidthScaled(16),
               fontFamily: "Avenir",
