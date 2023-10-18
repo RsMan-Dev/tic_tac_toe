@@ -64,14 +64,15 @@ class GameEngine extends ValueNotifier<GameData> {
     notifyListeners();
   }
 
-  void play(int index) {
-    if (value.isFinished) return;
-    if (value.grid[index] != null) return;
+  bool play(int index) {
+    if (value.isFinished) return false;
+    if (value.grid[index] != null) return false;
     value.grid[index] = value.turn;
     value.turn = value.turn == GamePlayer.X ? GamePlayer.O : GamePlayer.X;
     animate(index);
     checkWinner();
     notifyListeners();
+    return true;
   }
 
   void checkWinner() {
@@ -183,9 +184,15 @@ class GameEngine extends ValueNotifier<GameData> {
                           ),
                           itemBuilder: (context, index) {
                             return RoundedBox(
+                              splashColor: value.grid[index] == null
+                                  ? ThemeBuilder.primary.withOpacity(.3)
+                                  : ThemeBuilder.error.withOpacity(.3),
                               onTap: () {
-                                context.playSound(SoundEffects.impact);
-                                play(index);
+                                if (play(index)) {
+                                  context.playSound(SoundEffects.impact);
+                                } else {
+                                  context.playSound(SoundEffects.error);
+                                }
                               },
                               color: ThemeBuilder.background,
                               radius: Sizing.borderRadius(all: 16),

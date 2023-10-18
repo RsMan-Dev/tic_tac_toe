@@ -8,6 +8,7 @@ class RoundedBox extends StatelessWidget {
   final EdgeInsets padding;
   final EdgeInsets margin;
   final void Function()? onTap;
+  final Color? splashColor;
   const RoundedBox({
     super.key,
     required this.child,
@@ -16,6 +17,7 @@ class RoundedBox extends StatelessWidget {
     this.padding = EdgeInsets.zero,
     this.margin = EdgeInsets.zero,
     this.onTap,
+    this.splashColor,
   });
 
   @override
@@ -27,7 +29,7 @@ class RoundedBox extends StatelessWidget {
         borderRadius: radius,
         clipBehavior: Clip.hardEdge,
         child: InkWell(
-          splashColor: ThemeBuilder.primary.withOpacity(0.3),
+          splashColor: splashColor ?? ThemeBuilder.primary.withOpacity(0.3),
           onTap: onTap,
           child: Padding(
             padding: padding,
