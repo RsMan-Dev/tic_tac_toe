@@ -4,10 +4,10 @@ import 'package:layout/layout.dart';
 extension StateExtension on State {
   T bp<T>({
     required T xs,
-    required T sm,
-    required T md,
-    required T lg,
-    required T xl,
+    T? sm,
+    T? md,
+    T? lg,
+    T? xl,
   }) =>
       context.layout.value(
         xs: xs,
@@ -18,14 +18,14 @@ extension StateExtension on State {
       );
 }
 
-extension StatefulExtension on StatelessWidget {
+extension StatelessExtension on StatelessWidget {
   T bp<T>(
-    context, {
+    BuildContext context, {
     required T xs,
-    required T sm,
-    required T md,
-    required T lg,
-    required T xl,
+    T? sm,
+    T? md,
+    T? lg,
+    T? xl,
   }) =>
       context.layout.value(
         xs: xs,

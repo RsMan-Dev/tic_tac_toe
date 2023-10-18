@@ -1,8 +1,8 @@
-import 'dart:math';
-
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:tic_tac_toe/components/chance_button.dart';
 import 'package:tic_tac_toe/routes.dart';
-import 'package:tic_tac_toe/utils/theme.dart';
+import 'package:tic_tac_toe/utils/sizing.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -12,11 +12,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  gotoGame(double chance) {
-    if (Random().nextDouble() < chance) {
-      Navigator.of(context).pushNamed(Routes.game.path);
-    }
-  }
+  gotoGame() => Navigator.of(context).pushNamed(Routes.game.path);
 
   @override
   Widget build(BuildContext context) {
@@ -24,26 +20,45 @@ class _HomeState extends State<Home> {
       body: SizedBox.expand(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Bienvenue dans le super Tic Tac Toe!!",
-              style: ThemeBuilder.h1,
+              "Bienvenue dans le super",
+              style: Theme.of(context).textTheme.displayMedium,
               textAlign: TextAlign.center,
             ),
-            ...{
-              "Jouer": () => gotoGame(1),
-              "Jouer probablement": () => gotoGame(0.75),
-              "Jouer peut être": () => gotoGame(0.5),
-              "Jouer peut être pas": () => gotoGame(0.25),
-              "Ne pas jouer": () => gotoGame(0),
-            }
-                .entries
-                .map((e) => FilledButton(
-                      onPressed: e.value,
-                      child: Text(e.key),
-                    ))
-                .toList(),
+            Text(
+              "Tic Tac Toe!!",
+              style: Theme.of(context).textTheme.displayLarge,
+              textAlign: TextAlign.center,
+            ),
+            IntrinsicWidth(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  ...{
+                    "Jouer": 1.0,
+                    "Jouer probablement": 0.75,
+                    "Jouer peut être": 0.5,
+                    "Jouer peut être pas": 0.25,
+                    "Ne pas jouer": 0.0,
+                  }
+                      .entries
+                      .map(
+                        (e) => [
+                          Sizing.verticalSpacer(24),
+                          ChanceButton(
+                            chance: e.value,
+                            onPressed: gotoGame,
+                            child: Text(e.key),
+                          )
+                        ],
+                      )
+                      .toList()
+                      .flattened,
+                ],
+              ),
+            )
           ],
         ),
       ),
