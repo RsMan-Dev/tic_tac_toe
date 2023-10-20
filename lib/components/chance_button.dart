@@ -36,7 +36,12 @@ class _ChanceButtonState extends State<ChanceButton>
     } else {
       playSound(SoundEffects.error);
       controller.reset();
-      controller.animateTo(1).then((_) => controller.reset());
+      controller.animateTo(1).then((_) =>
+          // flutter's animation controller don't calculate the last frame using his
+          // curve, it just render like curve returned 1, but mine returns 0 at t=1
+          // so instead using forward, we will just reset the animation controller
+          // before and after the animation
+          controller.reset());
     }
   }
 

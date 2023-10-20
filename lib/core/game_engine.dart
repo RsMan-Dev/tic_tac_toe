@@ -129,6 +129,10 @@ class GameEngine extends ValueNotifier<GameData> {
         ActionDirection.center.fromIndexAndSize(index, value.size);
     value.boardTransformationController.reset();
     value.boardTransformationController.animateTo(1).then((_) {
+      // flutter's animation controller don't calculate the last frame using his
+      // curve, it just render like curve returned 1, but mine returns 0 at t=1
+      // so instead using forward, we will just reset the animation controller
+      // before and after the animation
       value.boardTransformationController.reset();
     });
   }
